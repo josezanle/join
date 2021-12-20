@@ -1,52 +1,36 @@
 import React from 'react';
 import {
-  Animated,
   Dimensions,
   ImageBackground,
   StyleSheet,
+  View,
 } from 'react-native';
-import Footer from './Footer';
+import AddToFavorite from '../../../components/AddToFavorite';
 import Content from './Content';
 
 const { width, height } = Dimensions.get('screen');
 
-const ACTION_OFFSET = 100;
+export const Card = ({ item }) => {
+  const { image, titulo, descripcion } = item;
 
-export const Card = React.memo(
-  ({ item, isFirst, swipe, handleChoice, tiltSign, ...rest }) => {
-    const { img_url, name, category } = item;
+  return (
+    <View style={styles.card}>
+      <ImageBackground
+        source={{ uri: image }}
+        style={[styles.image]}
+        borderRadius={15}
+        resizeMode="cover"
+      >
+        <AddToFavorite />
+        <Content
+          name={titulo}
+          descripcion={descripcion}
+        />
+      </ImageBackground>
+    </View>
+  );
+}
 
-    // const rotateSaved = useRef(new Animated.ValueXY()).current;
-
-
-    const rotate = Animated.multiply(swipe.x, tiltSign).interpolate({
-      inputRange: [-ACTION_OFFSET, 0, ACTION_OFFSET],
-      outputRange: ['-8deg', '0deg', '8deg'],
-    });
-
-    const animatedCardStyle = {
-      transform: [...swipe.getTranslateTransform(), { rotate }],
-    };
-    return (
-      <Animated.View
-        style={[styles.card, isFirst && animatedCardStyle]}
-        {...rest}>
-        <ImageBackground
-          source={{ uri: img_url }}
-          style={[styles.image]}
-          borderRadius={15}>
-
-          <Content
-            name={name}
-            category={category}
-          />
-          <Footer handleChoice={handleChoice} />
-        </ImageBackground>
-      </Animated.View>
-    );
-  }
-
-)
 export const styles = StyleSheet.create({
   card: {
     width,
@@ -56,17 +40,9 @@ export const styles = StyleSheet.create({
   },
   image: {
     width: width * 0.9,
-    height: height * 0.75,
+    height: height * 0.65,
     justifyContent: 'flex-end',
     alignItems: 'center',
-    resizeMode: "cover",
-  },
-  name: {
-    position: 'absolute',
-    bottom: 22,
-    fontSize: 36,
-    fontWeight: 'bold',
-    color: '#fff',
   },
   buttonsBox: {
     width: 170,

@@ -1,13 +1,37 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import CircularButton from '../../../components/CircularButton';
 import { globalStyles } from '../../../style/globalStyles';
 
 
 const Content = ({ name, category }) => {
+  const navigation = useNavigation()
+
+  const goToMarket = () => {
+    navigation.navigate('MarketStack', {
+      screen: 'SelectedMarket',
+    });
+  };
   return (
     <View style={styles.content}>
-      <Text style={[globalStyles.H3, styles.marketName]}>{name}</Text>
-      <Text style={styles.category}>{category}</Text>
+      <View style={styles.text}>
+        <Text style={[globalStyles.H3, styles.marketName]}>{name}</Text>
+      </View>
+      <View style={styles.buttonsBox}>
+        <CircularButton
+          iconName="close"
+          size={30}
+          color={'#1c1c1c'}
+          onPress={() => console.log("")}
+        />
+        <CircularButton
+          iconName="navigate-next"
+          size={30}
+          color={'#1c1c1c'}
+          onPress={goToMarket}
+        />
+      </View>
     </View>
   );
 };
@@ -17,16 +41,27 @@ export default Content;
 const styles = StyleSheet.create({
   content: {
     width: '100%',
-    marginBottom: 10,
+    height: 200,
+    backgroundColor: 'rgba(255, 255, 255, .7)',
+  },
+  text: {
+    width: '100%',
+    flex: 1,
+    justifyContent: 'center',
+  },
+  buttonsBox: {
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    paddingBottom: 10
   },
   marketName: {
     textAlign: 'center',
-    color: 'white',
+    color: '#1c1c1c',
     fontWeight: 'bold',
   },
   category: {
     textAlign: 'center',
-    color: 'white',
     fontSize: 20,
     fontStyle: "italic"
   },

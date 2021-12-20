@@ -22,8 +22,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     headerText: {
-        fontSize: 40,
-        fontFamily: 'monoton',
+        fontSize: 30,
         color: '#0d5df5',
     },
 });

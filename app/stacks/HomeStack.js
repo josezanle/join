@@ -5,6 +5,7 @@ import WelcomeScreen from '../screens/welcomeScreen/WelcomeScreen';
 import { BottomTab } from './BottomTab';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import JoinHeader from '../components/JoinHeader';
+import SplashScreen from '../screens/welcomeScreen/SplashScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,7 +32,6 @@ export const HomeStack = () => {
           }
         },
       }}>
-
       <Stack.Screen
         name="WelcomeScreen"
         component={WelcomeScreen}
@@ -41,6 +41,10 @@ export const HomeStack = () => {
             backgroundColor: 'white',
           },
         }}
+      />
+      <Stack.Screen
+        name="SplashScreen"
+        component={SplashScreen}
       />
       <Stack.Screen
         name="BottomTab"

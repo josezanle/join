@@ -9,21 +9,12 @@ const Stack = createNativeStackNavigator();
 const SwipeStack = () => {
 
     return (
-        <Stack.Navigator
-            screenOptions={{
-                header: props => {
-                    let title;
-                    if (props.route.name === 'SwipeScreen') {
-                        title = 'Join';
-                        return <SingleNavBar {...props} title={title} />;
-                    }
-                },
-            }}>
+        <Stack.Navigator>
             <Stack.Screen
                 name="SwipeScreen"
                 component={SwipeScreen}
                 options={{
-                    headerShown: true,
+                    headerShown: false,
                     contentStyle: {
                         backgroundColor: 'white',
                     },

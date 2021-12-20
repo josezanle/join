@@ -1,133 +1,104 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  Animated,
   Dimensions,
   FlatList,
-  PanResponder,
   StyleSheet,
-  Text,
   View,
+  ActivityIndicator,
+  Modal,
+  Text,
+  Pressable
 } from 'react-native';
-import { DATA } from '../../api/data';
+import { apiDataMarketPoint } from '../../api/marketApi';
 import ModalSwipeHelp from '../../components/ModalSwipeHelp';
 import { Card } from './components/Card';
 import EmptyComponent from './components/EmptyComponent';
+import SingleNavBar from '../../components/SingleNavBar';
 
-const { width, height } = Dimensions.get('screen');
 
-const ACTION_OFFSET = 100;
-
-const CARD = {
-  WIDTH: width * 0.9,
-  HEIGHT: height * 0.78,
-  BORDER_RADIUS: 20,
-  OUT_OF_SCREEN: width + 0.5 * width,
-};
 export default function SwipeScreen() {
-  const [pets, setPets] = useState(DATA);
-  const swipe = useRef(new Animated.ValueXY()).current;
-  const tiltSign = useRef(new Animated.Value(1)).current;
+  const [marketsData, setData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // useEffect(() => {
-  //   if (!pets.length) {
-  //     setPets(DATA);
-  //   }
-  // }, [pets.length]);
+  const [settings, setSettings] = useState(false)
 
-  // const petss = pets.reverse()
+  const showSettings = () => {
+    setSettings(!settings)
+  }
 
-  const panResponder = PanResponder.create({
-    onMoveShouldSetPanResponder: () => true,
-    onPanResponderMove: (_, { dx, dy, y0 }) => {
-      swipe.setValue({ x: dx, y: dy });
-      tiltSign.setValue(y0 > CARD.HEIGHT / 2 ? 1 : -1);
-    },
-    onPanResponderRelease: (_, { dx, dy }) => {
-      // .sign() convierte a 1, -1, 0, -0, o NAN
-      const direction = Math.sign(dx);
+  const getData = () => {
+    apiDataMarketPoint()
+      .then((res) => {
+        if (res) {
+          setData(res.body);
+          setIsLoading(false);
+        } else {
+          setIsLoading(true);
+        }
+      })
+      .catch((err) => {
+        console.log('err getData:', err);
+      });
+  };
 
-      // convierte un valor a positivo
-      const isActionActive = Math.abs(dx) > ACTION_OFFSET;
-
-      if (isActionActive) {
-        Animated.timing(swipe, {
-          duration: 200,
-          toValue: {
-            x: direction * CARD.OUT_OF_SCREEN,
-            y: dy,
-          },
-          useNativeDriver: true,
-        }).start(removeTopCard);
-      } else {
-        Animated.spring(swipe, {
-          toValue: {
-            x: 0,
-            y: 0,
-          },
-          useNativeDriver: true,
-          friction: 5,
-        }).start();
-      }
-    },
-  });
-
-  const removeTopCard = useCallback(() => {
-    setPets(prevState => prevState.slice(1));
-    swipe.setValue({ x: 0, y: 0 });
+  useEffect(() => {
+    getData();
   }, []);
-
-  const handleChoice = useCallback(
-    direction => {
-      Animated.timing(swipe.x, {
-        toValue: direction * CARD.OUT_OF_SCREEN,
-        duration: 400,
-        useNativeDriver: true,
-      }).start();
-    },
-    [],
-  );
 
   return (
     <View style={styles.container}>
       {/* <ModalSwipeHelp /> */}
-      <FlatList
-        data={pets}
-        contentContainerStyle={{
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "white"
+      <SingleNavBar showSettings={showSettings} />
+      {
+        !isLoading ? (
+          <FlatList
+            data={marketsData}
+            contentContainerStyle={{
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: "white"
+            }}
+            horizontal={true}
+            showsHorizontalScrollIndicator={false}
+            pagingEnabled
+            keyExtractor={item => item._id}
+            renderItem={({ item }) => {
+              return (
+                <Card item={item} />
+              )
+            }
+            }
+          />
+        ) : (
+          <View style={styles.container}>
+            <ActivityIndicator size={40} color='#199fdf' />
+          </View>
+        )
+      }
+      {/* ===================== */}
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={settings}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
         }}
-        initialNumToRender={1}
-        scrollEnabled={false}
-        horizontal={true}
-        showsHorizontalScrollIndicator={false}
-        // pagingEnabled
-        keyExtractor={item => item.id}
-        renderItem={({ item, index }) => {
-          const isFirst = index === 0;
-          const dragHandlers = isFirst ? panResponder.panHandlers : {};
-
-          return (
-            <Card
-              item={item}
-              isFirst={isFirst}
-              swipe={swipe}
-              tiltSign={tiltSign}
-              {...dragHandlers}
-              handleChoice={handleChoice}
-            />
-          )
-        }
-        }
-        ListEmptyComponent={() => {
-          return (
-            <View style={styles.container}>
-              <EmptyComponent />
-            </View>
-          )
-        }}
-
-      />
+      >
+        <View style={styles.modalView}>
+          <View style={styles.topCloseX}>
+            <Pressable
+              style={[styles.button, styles.buttonClose]}
+              onPress={() => setSettings(!settings)}
+            >
+              <Text style={styles.xClose}>X</Text>
+            </Pressable>
+          </View>
+          <View style={styles.bottomSettings}>
+            <Text>hi</Text>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -136,6 +107,28 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center"
-
   },
+  modalView: {
+    position: "absolute",
+    bottom: 0,
+    width: "100%",
+    height: 200,
+    borderRadius: 10,
+    backgroundColor: 'rgba(255, 255, 255, .9)',
+    padding: 15
+  },
+  topCloseX: {
+    flex: 2,
+    alignItems: "flex-end",
+  },
+  xClose: {
+    color: "silver",
+    fontWeight: "bold",
+    flex: 1,
+    width: "100%",
+    fontSize: 20
+  },
+  bottomSettings: {
+    flex: 8,
+  }
 });

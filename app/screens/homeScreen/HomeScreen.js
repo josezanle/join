@@ -1,12 +1,14 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import JoinHeader from '../../components/JoinHeader';
+import Especials from '../selectedMarket/components/Especials';
+import MarketHeader from '../selectedMarket/components/MarketHeader';
 
 const HomeScreen = () => {
   return (
     <View style={styles.container}>
-      <JoinHeader />
-
+      <MarketHeader />
+      <Especials />
     </View>
   );
 };

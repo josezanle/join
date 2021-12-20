@@ -6,6 +6,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const { width } = Dimensions.get('window');
+const darkBg = "#13181C";
+const secondBg = "#52595F";
+const iconColor = "#ebebeb";
+const idealRed = "#EB3E37";
+const relativeYellow = "#FEDA3E";
 
 const IMAGES = [
     {
@@ -117,7 +122,7 @@ const styles = StyleSheet.create({
 
     },
     circle1: {
-        backgroundColor: "#0d5df5",
+        backgroundColor: relativeYellow,
         borderRadius: 100,
         width: 50,
         height: 50,
@@ -126,7 +131,7 @@ const styles = StyleSheet.create({
         left: width * .05,
     },
     circle2: {
-        backgroundColor: "yellow",
+        backgroundColor: relativeYellow,
         borderRadius: 100,
         width: 80,
         height: 80,
@@ -135,7 +140,7 @@ const styles = StyleSheet.create({
         left: width * .05,
     },
     circle3: {
-        backgroundColor: "#0d5df5",
+        backgroundColor: idealRed,
         borderRadius: 100,
         width: 140,
         height: 140,

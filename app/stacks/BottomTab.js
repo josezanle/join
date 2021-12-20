@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { Dimensions, StyleSheet, TouchableOpacity, View } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import SearchScreen from '../screens/searchScreen/SearchScreen';
 import { MapStack } from './MapStack';
 import SwipeStack from './SwipeStack';
@@ -9,8 +9,8 @@ import HomeScreen from '../screens/homeScreen/HomeScreen';
 
 const Tab = createBottomTabNavigator();
 const { width } = Dimensions.get('window');
-const sizeIcon = width * 0.07;
-const color = "#0d5df5"
+const sizeIcon = width * 0.08;
+const isColor = "#52595F"
 
 export const BottomTab = () => {
   return (
@@ -81,9 +81,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   tabBar: {
-    backgroundColor: 'white',
     borderTopColor: 'transparent',
     borderTopWidth: 2,
-    elevation: 0
+    elevation: 0,
+    marginBottom: 10
   },
 });
