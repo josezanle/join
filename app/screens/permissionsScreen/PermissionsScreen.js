@@ -1,24 +1,43 @@
 import React, { useContext } from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, View } from 'react-native'
 import { PermissionsContext } from '../../context/PermissionsContext';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { globalStyles } from '../../style/globalStyles';
 import CustomButton from '../../components/CustomButton';
+
 
 const PermissionsScreen = () => {
     const { permissions, askLocationPermission } = useContext(PermissionsContext)
 
     return (
         <View style={styles.container}>
-            <View style={styles.circular}>
-                <MaterialIcons name="place" size={100} color="#0d5df5" />
+            <View style={styles.top}>
+                <View style={styles.circle}>
+                    <MaterialIcons name="place" size={40} color="white" />
+                </View>
+
             </View>
-            <Text style={[globalStyles.H3, styles.title]}>Verifica las tiendas disponibles cerca tuyo.</Text>
-            <Text style={[globalStyles.paragraph, styles.p]}>Por favor, activa los servicios de ubicacion para usar esta caracteristica</Text>
+            <View style={styles.mid}>
+                <Image
+                    source={require("../../../assets/images/emptySwiper.webp")}
+                    style={{
+                        width: "100%",
+                        height: "100%",
+                    }}
+                    resizeMode='contain'
 
-
-            <CustomButton text="Activar" textColor="white" backgroundButton="#0d5df5" onPress={askLocationPermission}
-            />
+                />
+                <Text style={styles.text}>Por Favor, habilita los permisos</Text>
+            </View>
+            <View style={styles.bottom}>
+                <CustomButton
+                    text="Activar"
+                    textColor="white"
+                    backgroundButton="#1c1c1c"
+                    onPress={askLocationPermission}
+                    width="100%"
+                />
+            </View>
         </View>
     )
 }
@@ -28,44 +47,32 @@ export default PermissionsScreen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "white"
+        paddingVertical: 15,
+        paddingHorizontal: 20,
     },
-    circular: {
-        width: 200,
-        height: 200,
-        backgroundColor: "#ebebeb",
-        borderRadius: 100,
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    circular2: {
-        width: 200,
-        height: 200,
-        backgroundColor: "#0d5df5",
-        borderRadius: 100,
-        justifyContent: "center",
-        alignItems: "center",
-        zIndex: 1000
-    },
-    title: {
-        fontWeight: "bold",
-        marginBottom: 10,
-        color: "#0d5df5"
-    },
-    p: {
-        width: "80%",
-        marginBottom: 20
-    },
-    button: {
-        backgroundColor: "#0d5df5",
-        width: 150,
-        justifyContent: "center",
+    top: {
+        flex: 1,
         alignItems: "center"
     },
-    buttonText: {
-        color: "white"
+    circle: {
+        width: 65,
+        height: 65,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#1c1c1c",
+        borderRadius: 100
     },
-
+    mid: {
+        flex: 1,
+    },
+    bottom: {
+        flex: 1,
+        justifyContent: "flex-end"
+    },
+    text: {
+        color: "#1c1c1c",
+        fontWeight: "bold",
+        fontSize: 20,
+        textAlign: "center",
+    }
 })

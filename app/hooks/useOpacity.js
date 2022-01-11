@@ -10,6 +10,7 @@ const useOpacity = () => {
             duration: 1000,
             useNativeDriver: true
         }).start()
+
     }
     return {
         opacity,

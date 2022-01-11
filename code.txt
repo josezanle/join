@@ -1,0 +1,7 @@
+
+//para cambiar el color del tab nativo de android in styles.xml
+
+<item name="android:navigationBarColor">@color/theme_color</item>
+
+
+

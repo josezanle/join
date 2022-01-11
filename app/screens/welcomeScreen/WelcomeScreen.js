@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Dimensions, StyleSheet, View, Image, Text, Pressable, Animated } from 'react-native'
 import useBounce from '../../hooks/useBounce';
 import { globalStyles } from '../../style/globalStyles'
@@ -6,9 +6,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 const { width } = Dimensions.get('window');
-const darkBg = "#13181C";
-const secondBg = "#52595F";
-const iconColor = "#ebebeb";
 const idealRed = "#EB3E37";
 const relativeYellow = "#FEDA3E";
 
@@ -39,29 +36,17 @@ const IMAGES = [
 const WelcomeScreen = ({ navigation }) => {
     const { pressIn, pressOut, bounce } = useBounce()
 
-    // const setItemstorage = () => {
-    //     try {
-    //         AsyncStorage.setItem('SHOW', JSON.stringify("saved"))
+    const setItemstorage = () => {
+        try {
+            AsyncStorage.setItem('@welcomeScreen', "off")
 
-    //     } catch (e) {
-    //         console.log(e)
-    //     }
-    // }
-    // const getItemstorage = async () => {
-    //     try {
-    //         const dataSaved = await AsyncStorage.getItem('SHOW')
-    //         console.log(dataSaved)
-    //     } catch (e) {
-    //         console.log(e)
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     setItemstorage()
-    //     getItemstorage()
-    // }, [])
+        } catch (e) {
+            console.log(e)
+        }
+    }
 
     const onPress = () => {
+        setItemstorage()
         navigation.replace("BottomTab")
     }
 
@@ -116,8 +101,6 @@ export default WelcomeScreen
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // backgroundColor: "cornflowerblue",
-        // backgroundColor: "#1c1c1c",
         backgroundColor: "white",
 
     },
@@ -163,9 +146,7 @@ const styles = StyleSheet.create({
     },
     bottomContent: {
         flex: 1,
-        // justifyContent: "center",
         alignItems: "center",
-        // backgroundColor: "white",
         backgroundColor: 'rgba(255, 255, 255, .7)',
         borderTopLeftRadius: 15,
         borderTopRightRadius: 15,
@@ -184,7 +165,7 @@ const styles = StyleSheet.create({
     button: {
         width: 160,
         height: 40,
-        backgroundColor: "#1c1c1c",
+        backgroundColor: "#13181C",
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 10

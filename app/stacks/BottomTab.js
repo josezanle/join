@@ -10,26 +10,30 @@ import HomeScreen from '../screens/homeScreen/HomeScreen';
 const Tab = createBottomTabNavigator();
 const { width } = Dimensions.get('window');
 const sizeIcon = width * 0.08;
-const isColor = "#52595F"
+const activeColor = "#13181C"
+const inActiveColor = "silver"
+
 
 export const BottomTab = () => {
+
   return (
     <Tab.Navigator
+
       screenOptions={{
         headerShown: false,
         tabBarStyle: styles.tabBar,
+        tabBarHideOnKeyboard: true,
       }}
       shifting={false}
-      initialRouteName='SwipeStack'
     >
       <Tab.Screen
         name="HomeScreen"
         component={HomeScreen}
         options={{
           tabBarLabel: '',
-          tabBarIcon: ({ color }) => {
+          tabBarIcon: ({ focused }) => {
             return (
-              <MaterialIcons name="home" size={sizeIcon} color={color} />
+              <MaterialIcons name="home" size={sizeIcon} color={focused ? activeColor : inActiveColor} />
             );
           },
         }}
@@ -39,9 +43,9 @@ export const BottomTab = () => {
         component={SearchScreen}
         options={{
           tabBarLabel: '',
-          tabBarIcon: ({ color }) => {
+          tabBarIcon: ({ focused }) => {
             return (
-              <MaterialIcons name="search" size={sizeIcon} color={color} />
+              <MaterialIcons name="search" size={sizeIcon} color={focused ? activeColor : inActiveColor} />
             );
           },
         }}
@@ -51,9 +55,9 @@ export const BottomTab = () => {
         component={SwipeStack}
         options={{
           tabBarLabel: '',
-          tabBarIcon: ({ color }) => {
+          tabBarIcon: ({ focused }) => {
             return (
-              <MaterialIcons name="style" size={sizeIcon} color={color} />
+              <MaterialIcons name="style" size={sizeIcon} color={focused ? activeColor : inActiveColor} />
             );
           },
         }}
@@ -63,27 +67,22 @@ export const BottomTab = () => {
         component={MapStack}
         options={{
           tabBarLabel: '',
-          tabBarIcon: ({ color }) => {
+          tabBarIcon: ({ focused }) => {
             return (
-              <MaterialIcons name="map" size={sizeIcon} color={color} />
+              <MaterialIcons name="map" size={sizeIcon} color={focused ? activeColor : inActiveColor} />
             );
           },
         }}
       />
-    </Tab.Navigator>
+    </Tab.Navigator >
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   tabBar: {
-    borderTopColor: 'transparent',
-    borderTopWidth: 2,
+    borderTopWidth: 0,
+    height: 50,
+    paddingTop: 7,
     elevation: 0,
-    marginBottom: 10
   },
 });

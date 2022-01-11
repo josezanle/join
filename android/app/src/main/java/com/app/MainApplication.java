@@ -1,10 +1,13 @@
 package com.app;
 
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import com.reactnativecommunity.geolocation.GeolocationPackage;
 import android.app.Application;
 import android.content.Context;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.reactnativecommunity.geolocation.GeolocationPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.horcrux.svg.SvgPackage;
 import com.zoontek.rnpermissions.RNPermissionsPackage;
@@ -33,6 +36,8 @@ public class MainApplication extends Application implements ReactApplication {
 
         new RNPermissionsPackage();
         new AsyncStoragePackage();
+        new GeolocationPackage();
+        new SplashScreenReactPackage();
 
           return packages;
         }

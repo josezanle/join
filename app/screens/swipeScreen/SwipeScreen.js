@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {
-  Dimensions,
   FlatList,
   StyleSheet,
   View,
@@ -14,12 +13,13 @@ import ModalSwipeHelp from '../../components/ModalSwipeHelp';
 import { Card } from './components/Card';
 import EmptyComponent from './components/EmptyComponent';
 import SingleNavBar from '../../components/SingleNavBar';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ThemeContext } from '../../context/themeContext';
 
 export default function SwipeScreen() {
   const [marketsData, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
-
+  const { theme } = useContext(ThemeContext)
   const [settings, setSettings] = useState(false)
 
   const showSettings = () => {
@@ -45,9 +45,10 @@ export default function SwipeScreen() {
     getData();
   }, []);
 
+
   return (
-    <View style={styles.container}>
-      {/* <ModalSwipeHelp /> */}
+    <View style={{ ...styles.container, backgroundColor: theme.colors.background }}>
+      <ModalSwipeHelp />
       <SingleNavBar showSettings={showSettings} />
       {
         !isLoading ? (
@@ -56,7 +57,7 @@ export default function SwipeScreen() {
             contentContainerStyle={{
               justifyContent: "center",
               alignItems: "center",
-              backgroundColor: "white"
+              backgroundColor: theme.colors.background
             }}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
@@ -75,13 +76,11 @@ export default function SwipeScreen() {
           </View>
         )
       }
-      {/* ===================== */}
       <Modal
         animationType="slide"
         transparent={true}
         visible={settings}
         onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
           setModalVisible(!modalVisible);
         }}
       >
