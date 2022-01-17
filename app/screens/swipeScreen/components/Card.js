@@ -1,42 +1,38 @@
 import React from 'react';
-import {
-  Dimensions,
-  ImageBackground,
-  StyleSheet,
-  View,
-} from 'react-native';
+import PropTypes from 'prop-types';
+import { Dimensions, ImageBackground, StyleSheet, View } from 'react-native';
 import AddToFavorite from '../../../components/AddToFavorite';
 import Content from './Content';
 
 const { width, height } = Dimensions.get('screen');
 
 export const Card = ({ item }) => {
-  const { image, titulo, descripcion } = item;
+  const { main_photo_url, name, type } = item;
 
   return (
     <View style={styles.card}>
       <ImageBackground
-        source={{ uri: image }}
+        source={{ uri: main_photo_url }}
         style={[styles.image]}
         borderRadius={15}
-        resizeMode="cover"
-      >
+        resizeMode="cover">
         <AddToFavorite />
-        <Content
-          name={titulo}
-          descripcion={descripcion}
-        />
+        <Content name={name} descripcion={type} />
       </ImageBackground>
     </View>
   );
-}
+};
+
+Card.propTypes = {
+  item: PropTypes.object,
+};
 
 export const styles = StyleSheet.create({
   card: {
     width,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
   },
   image: {
     width: width * 0.9,
@@ -51,5 +47,4 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-around',
     paddingBottom: 30,
   },
-
 });
