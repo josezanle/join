@@ -1,5 +1,14 @@
 import React, { useContext, useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, TextInput, FlatList, Image, Dimensions, Pressable } from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  FlatList,
+  Image,
+  Dimensions,
+  Pressable,
+} from 'react-native';
 import { IMAGES } from '../../api/images';
 import { OFF } from '../../api/off';
 import { ThemeContext } from '../../context/themeContext';
@@ -10,33 +19,36 @@ const widthX = Dimensions.get('window').width;
 const TEXT_OPTIONS = [
   {
     id: 1,
-    title: "Selectos",
+    title: 'Selectos',
   },
   {
     id: 2,
-    title: "Mas Visto",
+    title: 'Mas Visto',
   },
   {
     id: 3,
-    title: "Ofertas",
+    title: 'Ofertas',
   },
   {
     id: 4,
-    title: "Para ti",
+    title: 'Para ti',
   },
-]
+];
 
 const HomeScreen = () => {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const { theme } = useContext(ThemeContext)
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const { theme } = useContext(ThemeContext);
 
-  const onPress = (index) => {
-    setCurrentIndex(index)
-  }
+  const onPress = index => {
+    setCurrentIndex(index);
+  };
   return (
-    <ScrollView style={{ ...styles.container, backgroundColor: theme.colors.background }}>
+    <ScrollView
+      style={{ ...styles.container, backgroundColor: theme.colors.background }}>
       <View style={styles.top}>
-        <Text style={[globalStyles.H4, styles.title]}>No te pierdas las ultimas novedades</Text>
+        <Text style={[globalStyles.H4, styles.title]}>
+          No te pierdas las ultimas novedades
+        </Text>
         <FlatList
           data={TEXT_OPTIONS}
           horizontal
@@ -48,13 +60,25 @@ const HomeScreen = () => {
           keyExtractor={item => item.id}
           renderItem={({ item, index }) => {
             return (
-              <Pressable onPress={() => onPress(index)} style={[styles.button, {
-                backgroundColor: currentIndex === index ? "#1c1c1c" : "white",
-              }]}>
-                <Text style={[globalStyles.H4, {
-                  color: currentIndex === index ? "white" : "black",
-                  fontWeight: "bold"
-                }]}>{item.title}</Text>
+              <Pressable
+                onPress={() => onPress(index)}
+                style={[
+                  styles.button,
+                  {
+                    backgroundColor:
+                      currentIndex === index ? '#1c1c1c' : 'white',
+                  },
+                ]}>
+                <Text
+                  style={[
+                    globalStyles.H4,
+                    {
+                      color: currentIndex === index ? 'white' : 'black',
+                      fontWeight: 'bold',
+                    },
+                  ]}>
+                  {item.title}
+                </Text>
               </Pressable>
             );
           }}
@@ -63,10 +87,10 @@ const HomeScreen = () => {
           data={IMAGES}
           horizontal
           contentContainerStyle={{
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: "white",
-            marginBottom: 30
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: 'white',
+            marginBottom: 30,
           }}
           pagingEnabled
           showsHorizontalScrollIndicator={false}
@@ -86,29 +110,32 @@ const HomeScreen = () => {
         />
 
         <View style={styles.box}>
-          <Text style={[globalStyles.H4, styles.title]}>Descuentos para vos</Text>
+          <Text style={[globalStyles.H4, styles.title]}>
+            Descuentos para vos
+          </Text>
           <FlatList
             data={OFF}
             horizontal
             contentContainerStyle={{
-              justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: "white",
-              marginBottom: 30
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: 'white',
+              marginBottom: 30,
             }}
             pagingEnabled
             showsHorizontalScrollIndicator={false}
             keyExtractor={item => item.id}
             renderItem={({ item, index }) => {
               return (
-                <View style={{
-                  backgroundColor: 'white',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: widthX,
-                  height: 180,
-                  borderRadius: 11
-                }}>
+                <View
+                  style={{
+                    backgroundColor: 'white',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: widthX,
+                    height: 180,
+                    borderRadius: 11,
+                  }}>
                   <Image
                     source={{ uri: item.uri }}
                     style={styles.image}
@@ -121,28 +148,31 @@ const HomeScreen = () => {
           />
         </View>
         <View style={styles.box}>
-          <Text style={[globalStyles.H4, styles.title]}>Tiendas Destacadas</Text>
+          <Text style={[globalStyles.H4, styles.title]}>
+            Tiendas Destacadas
+          </Text>
           <FlatList
             data={IMAGES}
             horizontal
             contentContainerStyle={{
-              justifyContent: "center",
-              alignItems: "center",
-              backgroundColor: "white"
+              justifyContent: 'center',
+              alignItems: 'center',
+              backgroundColor: 'white',
             }}
             pagingEnabled
             showsHorizontalScrollIndicator={false}
             keyExtractor={item => item.id}
             renderItem={({ item, index }) => {
               return (
-                <View style={{
-                  backgroundColor: 'white',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  width: widthX,
-                  height: 180,
-                  borderRadius: 11
-                }}>
+                <View
+                  style={{
+                    backgroundColor: 'white',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    width: widthX,
+                    height: 180,
+                    borderRadius: 11,
+                  }}>
                   <Image
                     source={{ uri: item.uri }}
                     style={styles.image}
@@ -159,25 +189,24 @@ const HomeScreen = () => {
   );
 };
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white",
-    paddingTop: 20
+    backgroundColor: 'white',
+    paddingTop: 20,
   },
   title: {
     paddingHorizontal: 15,
-    backgroundColor: "white",
-    fontWeight: "bold",
-    color: "#1c1c1c"
+    backgroundColor: 'white',
+    fontWeight: 'bold',
+    color: '#1c1c1c',
   },
   top: {
-    width: "100%",
+    width: '100%',
     marginBottom: 15,
   },
   box: {
-    width: "100%",
+    width: '100%',
   },
   imageBox: {
     backgroundColor: 'white',
@@ -197,8 +226,8 @@ const styles = StyleSheet.create({
     marginLeft: 30,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 15
+    borderRadius: 15,
   },
-})
+});
 
 export default HomeScreen;

@@ -1,0 +1,23 @@
+{
+  "preset": "node",
+  "entry": ["index.js"],
+  "extensions": [".js", ".jsx", ".ts", ".tsx"],
+  "moduleDirectory": ["node_modules", "src"],
+  "flow": false,
+  "ignorePatterns": [
+    "**/node_modules/**",
+    "**/*.tests.{js,jsx,ts,tsx}",
+    "**/*.test.{js,jsx,ts,tsx}",
+    "**/*.spec.{js,jsx,ts,tsx}",
+    "**/tests/**",
+    "**/__tests__/**",
+    "**/*.d.ts"
+  ],
+  "ignoreUnimported": [
+    "react.native.config.js",
+    "metro.config.js",
+    "babel.config.js"
+  ],
+  "ignoreUnresolved": [],
+  "ignoreUnused": []
+}

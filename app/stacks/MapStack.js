@@ -8,37 +8,21 @@ import LoadingScreen from '../screens/loadingScreen/LoadingScreen';
 const Stack = createNativeStackNavigator();
 
 export const MapStack = () => {
-  const { permissions } = useContext(PermissionsContext)
+  const { permissions } = useContext(PermissionsContext);
 
-  if (permissions.locationStatus === "unavailable") {
-    return <LoadingScreen />
+  if (permissions.locationStatus === 'unavailable') {
+    return <LoadingScreen />;
   }
   return (
     <Stack.Navigator
       screenOptions={{
-
         headerShown: false,
-      }}
-    >
-      {
-        (
-          permissions.locationStatus === "granted"
-        )
-          ? <Stack.Screen
-            name="MapScreen"
-            component={MapScreen}
-          />
-          : <Stack.Screen
-            name="PermissionsScreen"
-            component={PermissionsScreen}
-          />
-      }
-
-
-
-
-
-
+      }}>
+      {permissions.locationStatus === 'granted' ? (
+        <Stack.Screen name="MapScreen" component={MapScreen} />
+      ) : (
+        <Stack.Screen name="PermissionsScreen" component={PermissionsScreen} />
+      )}
     </Stack.Navigator>
   );
 };

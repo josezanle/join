@@ -1,6 +1,6 @@
 import React from 'react';
-import {Dimensions, FlatList, StyleSheet, View} from 'react-native';
-import {DATA} from '../../api/data';
+import { Dimensions, FlatList, StyleSheet, View } from 'react-native';
+import { DATA } from '../../api/data';
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
 
@@ -16,7 +16,7 @@ const CategoriesScreen = () => {
         showsVerticalScrollIndicator={false}
         data={DATA}
         keyExtractor={item => item.id}
-        renderItem={({item}) => {
+        renderItem={({ item }) => {
           return <View style={styles.card}></View>;
         }}
       />

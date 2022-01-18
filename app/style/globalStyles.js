@@ -11,7 +11,7 @@ export const globalStyles = StyleSheet.create({
     backgroundColor: 'white',
   },
   H1: {
-    fontSize: windowWidth * 0.10,
+    fontSize: windowWidth * 0.1,
   },
   H3: {
     fontSize: windowWidth * 0.08,
@@ -21,5 +21,5 @@ export const globalStyles = StyleSheet.create({
   },
   paragraph: {
     fontSize: windowWidth * 0.04,
-  }
+  },
 });

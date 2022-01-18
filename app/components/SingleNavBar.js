@@ -1,5 +1,12 @@
 import React, { useContext, useState } from 'react';
-import { Dimensions, StyleSheet, Text, View, Pressable, Modal } from 'react-native';
+import {
+  Dimensions,
+  StyleSheet,
+  Text,
+  View,
+  Pressable,
+  Modal,
+} from 'react-native';
 import { PADDING } from '../style/globalStyles';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -8,12 +15,12 @@ import { ThemeContext } from '../context/themeContext';
 const windowWidth = Dimensions.get('window').width;
 
 const SingleNavBar = ({ showSettings }) => {
-  const [press, setPress] = useState(true)
-  const { setDarkTheme, setLightTheme } = useContext(ThemeContext)
+  const [press, setPress] = useState(true);
+  const { setDarkTheme, setLightTheme } = useContext(ThemeContext);
 
   const changeMode = () => {
-    setPress(press ? setLightTheme : setDarkTheme)
-  }
+    setPress(press ? setLightTheme : setDarkTheme);
+  };
 
   return (
     <View style={styles.navbar}>
@@ -23,14 +30,17 @@ const SingleNavBar = ({ showSettings }) => {
         </Pressable>
       ) : (
         <Pressable onPress={changeMode}>
-          <MaterialCommunityIcons name="moon-waning-crescent" size={30} color="silver" />
+          <MaterialCommunityIcons
+            name="moon-waning-crescent"
+            size={30}
+            color="silver"
+          />
         </Pressable>
       )}
       <Text style={styles.headerText}>Join</Text>
       <Pressable onPress={showSettings}>
         <MaterialIcons name="tune" size={30} color="silver" />
       </Pressable>
-
     </View>
   );
 };
@@ -52,5 +62,4 @@ const styles = StyleSheet.create({
     // fontFamily: 'monoton',
     color: '#0d5df5',
   },
-
 });

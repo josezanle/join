@@ -11,7 +11,7 @@ import { NavigationContainer } from '@react-navigation/native';
 const Stack = createNativeStackNavigator();
 
 export const HomeStack = () => {
-  const { theme } = useContext(ThemeContext)
+  const { theme } = useContext(ThemeContext);
 
   return (
     <NavigationContainer theme={theme}>
@@ -28,6 +28,5 @@ export const HomeStack = () => {
         />
       </Stack.Navigator>
     </NavigationContainer>
-
   );
 };
