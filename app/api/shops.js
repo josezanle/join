@@ -2,19 +2,25 @@ import axios from 'axios';
 import env from 'react-native-config';
 
 export const getShops = () => {
-  const config = {
-    method: 'get',
-    url: `${env.API_URL}/shops`,
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  };
-
-  return axios(config)
+  return axios
+    .get(`${env.API_URL}/shops`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
     .then(function (response) {
       return response.data.data;
+    });
+};
+
+export const getShop = id => {
+  return axios
+    .get(`${env.API_URL}/shops/${encodeURIComponent(id)}`, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
     })
-    .catch(function (error) {
-      console.log(error);
+    .then(function (response) {
+      return response.data.data;
     });
 };

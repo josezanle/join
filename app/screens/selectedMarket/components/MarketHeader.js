@@ -1,15 +1,20 @@
 import React from 'react';
-import {Dimensions, StyleSheet, Text, View} from 'react-native';
-import {globalStyles} from '../../../style/globalStyles';
+import PropTypes from 'prop-types';
+import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { globalStyles } from '../../../style/globalStyles';
 
 const windowHeight = Dimensions.get('window').height;
 
-const MarketHeader = () => {
+const MarketHeader = ({ title }) => {
   return (
     <View style={styles.marketHeader}>
-      <Text style={globalStyles.H1}>Market Name</Text>
+      <Text style={globalStyles.H1}>{title}</Text>
     </View>
   );
+};
+
+MarketHeader.propTypes = {
+  title: PropTypes.string,
 };
 
 export default MarketHeader;

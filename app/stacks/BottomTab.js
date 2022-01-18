@@ -10,22 +10,18 @@ import HomeScreen from '../screens/homeScreen/HomeScreen';
 const Tab = createBottomTabNavigator();
 const { width } = Dimensions.get('window');
 const sizeIcon = width * 0.08;
-const activeColor = "#13181C"
-const inActiveColor = "silver"
-
+const activeColor = '#13181C';
+const inActiveColor = 'silver';
 
 export const BottomTab = () => {
-
   return (
     <Tab.Navigator
-
       screenOptions={{
         headerShown: false,
         tabBarStyle: styles.tabBar,
         tabBarHideOnKeyboard: true,
       }}
-      shifting={false}
-    >
+      shifting={false}>
       <Tab.Screen
         name="HomeScreen"
         component={HomeScreen}
@@ -33,7 +29,11 @@ export const BottomTab = () => {
           tabBarLabel: '',
           tabBarIcon: ({ focused }) => {
             return (
-              <MaterialIcons name="home" size={sizeIcon} color={focused ? activeColor : inActiveColor} />
+              <MaterialIcons
+                name="home"
+                size={sizeIcon}
+                color={focused ? activeColor : inActiveColor}
+              />
             );
           },
         }}
@@ -45,7 +45,11 @@ export const BottomTab = () => {
           tabBarLabel: '',
           tabBarIcon: ({ focused }) => {
             return (
-              <MaterialIcons name="search" size={sizeIcon} color={focused ? activeColor : inActiveColor} />
+              <MaterialIcons
+                name="search"
+                size={sizeIcon}
+                color={focused ? activeColor : inActiveColor}
+              />
             );
           },
         }}
@@ -57,7 +61,11 @@ export const BottomTab = () => {
           tabBarLabel: '',
           tabBarIcon: ({ focused }) => {
             return (
-              <MaterialIcons name="style" size={sizeIcon} color={focused ? activeColor : inActiveColor} />
+              <MaterialIcons
+                name="style"
+                size={sizeIcon}
+                color={focused ? activeColor : inActiveColor}
+              />
             );
           },
         }}
@@ -69,12 +77,16 @@ export const BottomTab = () => {
           tabBarLabel: '',
           tabBarIcon: ({ focused }) => {
             return (
-              <MaterialIcons name="map" size={sizeIcon} color={focused ? activeColor : inActiveColor} />
+              <MaterialIcons
+                name="map"
+                size={sizeIcon}
+                color={focused ? activeColor : inActiveColor}
+              />
             );
           },
         }}
       />
-    </Tab.Navigator >
+    </Tab.Navigator>
   );
 };
 

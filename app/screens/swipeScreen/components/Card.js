@@ -7,7 +7,7 @@ import Content from './Content';
 const { width, height } = Dimensions.get('screen');
 
 export const Card = ({ item }) => {
-  const { main_photo_url, name, type } = item;
+  const { main_photo_url } = item;
 
   return (
     <View style={styles.card}>
@@ -17,7 +17,7 @@ export const Card = ({ item }) => {
         borderRadius={15}
         resizeMode="cover">
         <AddToFavorite />
-        <Content name={name} descripcion={type} />
+        <Content shop={item} />
       </ImageBackground>
     </View>
   );
