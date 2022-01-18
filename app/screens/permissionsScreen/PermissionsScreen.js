@@ -2,11 +2,10 @@ import React, { useContext } from 'react';
 import { Image, StyleSheet, Text, View } from 'react-native';
 import { PermissionsContext } from '../../context/PermissionsContext';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { globalStyles } from '../../style/globalStyles';
 import CustomButton from '../../components/CustomButton';
 
 const PermissionsScreen = () => {
-  const { permissions, askLocationPermission } = useContext(PermissionsContext);
+  const { askLocationPermission } = useContext(PermissionsContext);
 
   return (
     <View style={styles.container}>

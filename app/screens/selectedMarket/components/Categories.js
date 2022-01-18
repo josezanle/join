@@ -1,6 +1,5 @@
 import React from 'react';
 import { FlatList, StyleSheet, Text, View } from 'react-native';
-import { globalStyles } from '../../../style/globalStyles';
 
 const DATA = [
   {
@@ -49,7 +48,7 @@ const Categories = () => {
         horizontal
         showsHorizontalScrollIndicator={false}
         keyExtractor={item => item.id}
-        renderItem={({ item, index }) => {
+        renderItem={({ item }) => {
           return (
             <View style={styles.circular}>
               <Text>{item.id}</Text>

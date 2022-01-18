@@ -1,12 +1,5 @@
 import React, { useContext, useState } from 'react';
-import {
-  Dimensions,
-  StyleSheet,
-  Text,
-  View,
-  Pressable,
-  Modal,
-} from 'react-native';
+import { Dimensions, StyleSheet, Text, View, Pressable } from 'react-native';
 import { PADDING } from '../style/globalStyles';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';

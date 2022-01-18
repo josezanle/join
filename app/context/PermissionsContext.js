@@ -1,11 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { AppState } from 'react-native';
-import {
-  check,
-  PERMISSIONS,
-  request,
-  openSettings,
-} from 'react-native-permissions';
+import { check, PERMISSIONS, request } from 'react-native-permissions';
 
 export const permissionInitState = {
   locationStatus: 'unavailable',

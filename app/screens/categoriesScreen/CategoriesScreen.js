@@ -16,7 +16,7 @@ const CategoriesScreen = () => {
         showsVerticalScrollIndicator={false}
         data={DATA}
         keyExtractor={item => item.id}
-        renderItem={({ item }) => {
+        renderItem={() => {
           return <View style={styles.card}></View>;
         }}
       />

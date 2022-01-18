@@ -95,7 +95,7 @@ const HomeScreen = () => {
           pagingEnabled
           showsHorizontalScrollIndicator={false}
           keyExtractor={item => item.id}
-          renderItem={({ item, index }) => {
+          renderItem={({ item }) => {
             return (
               <View style={styles.imageBox}>
                 <Image
@@ -125,7 +125,7 @@ const HomeScreen = () => {
             pagingEnabled
             showsHorizontalScrollIndicator={false}
             keyExtractor={item => item.id}
-            renderItem={({ item, index }) => {
+            renderItem={({ item }) => {
               return (
                 <View
                   style={{
@@ -162,7 +162,7 @@ const HomeScreen = () => {
             pagingEnabled
             showsHorizontalScrollIndicator={false}
             keyExtractor={item => item.id}
-            renderItem={({ item, index }) => {
+            renderItem={({ item }) => {
               return (
                 <View
                   style={{

@@ -3,20 +3,16 @@ import {
   Keyboard,
   KeyboardAvoidingView,
   Pressable,
-  StatusBar,
   StyleSheet,
-  Text,
   TextInput,
   View,
   TouchableOpacity,
-  ActivityIndicator,
 } from 'react-native';
-import { globalStyles } from '../../style/globalStyles';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const SearchScreen = () => {
-  const [change, setChange] = useState('');
+  const [, setChange] = useState('');
   return (
     <KeyboardAvoidingView behavior="height" style={styles.container}>
       <Pressable onPress={() => Keyboard.dismiss()} style={styles.container}>
