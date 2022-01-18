@@ -5,6 +5,7 @@ import useBounce from '../hooks/useBounce';
 
 export default function CircularButton({ iconName, size, color, onPress }) {
   const { pressIn, pressOut, bounce } = useBounce();
+  console.log('test');
 
   return (
     <Pressable onPress={onPress} onPressIn={pressIn} onPressOut={pressOut}>
