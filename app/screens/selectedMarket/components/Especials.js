@@ -1,4 +1,4 @@
-import {useNavigation} from '@react-navigation/core';
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
 import {
   Dimensions,
@@ -9,8 +9,8 @@ import {
   Text,
   View,
 } from 'react-native';
-import {IMAGES} from '../../../api/images';
-import {globalStyles} from '../../../style/globalStyles';
+import { IMAGES } from '../../../api/images';
+import { globalStyles } from '../../../style/globalStyles';
 import Categories from './Categories';
 
 const windowWidth = Dimensions.get('window').width;
@@ -28,9 +28,9 @@ const Especials = () => {
       }}
       ListHeaderComponent={() => {
         return (
-          <View style={{paddingBottom: 7}}>
+          <View style={{ paddingBottom: 7 }}>
             <View style={styles.row}>
-              <Text style={[globalStyles.H4, styles.subtitle]}>Categories</Text>
+              <Text style={[globalStyles.H4, styles.subtitle]}>Categorías</Text>
               <Pressable
                 onPress={() => navigation.navigate('CategoriesScreen')}>
                 <Text>Ver Todo</Text>
@@ -40,11 +40,11 @@ const Especials = () => {
           </View>
         );
       }}
-      renderItem={({item, index}) => {
+      renderItem={({ item }) => {
         return (
           <View style={styles.imageBox}>
             <Image
-              source={{uri: item.uri}}
+              source={{ uri: item.uri }}
               style={styles.image}
               resizeMode="cover"
               borderRadius={15}
